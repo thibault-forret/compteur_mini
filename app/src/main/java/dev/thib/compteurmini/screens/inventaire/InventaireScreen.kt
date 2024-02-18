@@ -1,4 +1,4 @@
-package dev.thib.compteurmini.screens
+package dev.thib.compteurmini.screens.inventaire
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

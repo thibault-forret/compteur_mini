@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import dev.thib.compteurmini.screens.accueil.AccueilScreen
+import dev.thib.compteurmini.screens.AccueilScreen
 
 @Composable
 fun RootNavigationGraph(navController: NavHostController) {

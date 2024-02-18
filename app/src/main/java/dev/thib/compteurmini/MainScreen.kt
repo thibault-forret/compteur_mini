@@ -15,6 +15,9 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.res.painterResource
+
+
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -25,17 +28,17 @@ fun MainScreen() {
             BottomBar(navController = navController)
         }
     ) {
-        BottomNavGraph(navController = navController)
+        NavGraph(navController = navController)
     }
 }
 
 @Composable
 fun BottomBar(navController: NavHostController) {
     val screens = listOf(
-        BottomBarScreen.Accueil,
-        BottomBarScreen.Inventaire,
-        BottomBarScreen.Classement,
-        BottomBarScreen.Options,
+        ScreenList.Accueil,
+        ScreenList.Inventaire,
+        ScreenList.Classement,
+        ScreenList.Options,
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -53,7 +56,7 @@ fun BottomBar(navController: NavHostController) {
 
 @Composable
 fun RowScope.AddItem(
-    screen: BottomBarScreen,
+    screen: ScreenList,
     currentDestination: NavDestination?,
     navController: NavHostController
 ) {
@@ -65,10 +68,17 @@ fun RowScope.AddItem(
             it.route == screen.route
         } == true,
         icon = {
-               Icon(
-                   imageVector = screen.selectedIcon,
-                   contentDescription = screen.title
-               ) // voir pour selected / not selected
+            val icon = if (currentDestination?.hierarchy?.any { it.route == screen.route } == true) {
+                screen.selectedIcon
+            } else {
+                screen.unSelectedIcon
+            }
+            icon?.let {
+                Icon(
+                    painter = painterResource(id = it),
+                    contentDescription = screen.title
+                )
+            } // voir pour selected / not selected
         },
         onClick = {
             navController.navigate(screen.route) {

@@ -1,4 +1,4 @@
-package dev.thib.compteurmini.screens.accueil
+package dev.thib.compteurmini.screens.inventaire
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,15 +13,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun AccueilScreen() {
+fun DetailPlaqueScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
-        contentAlignment = Alignment.Center,
+        contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "Accueil",
+            text = "Detail Plaque",
             color = Color.Black,
             fontSize = MaterialTheme.typography.titleLarge.fontSize,
             fontWeight = FontWeight.Bold
@@ -31,6 +31,6 @@ fun AccueilScreen() {
 
 @Composable
 @Preview(showBackground = true)
-fun AccueilScreenPreview() {
-    AccueilScreen()
+fun DetailPlaqueScreenPreview() {
+    DetailPlaqueScreen()
 }
