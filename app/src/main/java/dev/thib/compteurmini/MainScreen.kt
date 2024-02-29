@@ -1,6 +1,7 @@
 package dev.thib.compteurmini
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
@@ -31,7 +32,7 @@ import androidx.compose.ui.unit.sp
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen() {
+fun MainScreen(context: Context) {
     val navController = rememberNavController()
     Scaffold (
         bottomBar = {
@@ -39,6 +40,15 @@ fun MainScreen() {
         }
     ) {
         NavGraph(navController = navController)
+
+        // Créez une instance de PlaqueImmatriculationDatabaseHelper
+        val dbHelper = PlaqueImmatriculationDatabaseHelper(context)
+
+        // Récupérer les informations de l'utilisateur depuis la base de données
+        val userFromDB = dbHelper.getUserById(1) // Supposons que l'utilisateur avec l'ID 1 est l'utilisateur actuel
+
+        // Stocker les informations de l'utilisateur dans CurrentUser
+        CurrentUser.user = userFromDB
     }
 }
 

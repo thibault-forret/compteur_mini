@@ -1,5 +1,6 @@
 package dev.thib.compteurmini
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,7 +11,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CompteurMiniTheme {
-                MainScreen()
+                // Obtenez le contexte de cette activité
+                val context: Context = this
+                MainScreen(context = context)
             }
         }
     }
